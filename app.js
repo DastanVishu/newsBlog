@@ -14,8 +14,17 @@ var UserModel       = require("./models/userid"),
     CommentModel    = require("./models/comment");
 
 // requried routes
+var blogpostRoutes  = require("./routes/Blogpost"),
+    commentRoutes   = require("./routes/comment");
 
+// connecting to Database
 mongoose.connect("mongodb://localhost/Bloggers");
+
+app.set("view engine", "ejs");
+
+// used routes
+app.use(blogpostRoutes);
+// app.use(commentRoutes);
 
 // app request listener
 app.listen(3000, function(req, res){
