@@ -9,7 +9,7 @@
                     <p class="card-text"><%= selected.description %></p>
                     <h6 class="card-subtitle mb-2 text-muted">Submit by <%= selected.author.username %></h6>
                     <small class="text-muted"><%= selected.date %></small>
-                    <% if(currentUser.admin === "true"){ %>
+                    <% if(currentUser && currentUser.admin === "true"){ %>
                     <form action="/<%= selected.id %>?_method=DELETE" method="POST">
                         <button class="btn btn-danger btn-sm" style="float: right; margin-left: 4px;">Delete</button>
                     </form>
