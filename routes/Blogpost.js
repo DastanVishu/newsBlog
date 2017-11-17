@@ -7,7 +7,7 @@ var express = require("express"),
 
 // landing page
 router.get("/", function(req, res){
-    res.render("landingPage");
+    res.redirect("/blog");
     //res.send("hello");
 });
 

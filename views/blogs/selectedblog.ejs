@@ -1,21 +1,22 @@
 <% include ../partials/header %>
 
-<%= selected %>
 <div class="container">
-    <div class="row">
+
         <div style=" margin: 25px auto;">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
+                    <h4 class="card-title"><%= selected.title %></h4>
                     
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <p class="card-text"><%= selected.description %></p>
+                    <h6 class="card-subtitle mb-2 text-muted">Submit by <%= selected.author.username %></h6>
+                    <small class="text-muted"><%= selected.date %></small>
+                    <a href="#" class="btn btn-danger btn-sm" style="float: right; margin-left: 4px;">Delete</a>
+                    <a href="#" class="btn btn-warning btn-sm" style="float: right;">Edit</a>  
+                    <br><a href="/blog">Go Back</a> 
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
     
 <% include ../partials/footer %>
