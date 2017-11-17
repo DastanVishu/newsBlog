@@ -48,17 +48,6 @@ router.post("/blog/new", middleware.isLoggedIn, function(req, res){
     })
 });
 
-// Describe the selected blog
-router.get("/blog/:id", function(req, res){
-    BlogpostModel.findById(req.params.id, function(err, founded){
-        if(err){
-            console.log(err);
-            res.redirect("/blog");
-        }else{
-            res.render("blogs/selectedblog", {selected: founded});
-        }
-    });
-});
 
 // edit the bolg
 router.get("/blog/:id/edit", middleware.checkOwnership, function(req, res){

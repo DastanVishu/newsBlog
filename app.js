@@ -21,7 +21,8 @@ var blogpostRoutes  = require("./routes/Blogpost"),
 
 // connecting to Database
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/Bloggers");
+mongoose.connect("mongodb://dastan:vishal@ds113046.mlab.com:13046/bloggers");
+//mongoose.connect("mongodb://localhost/Bloggers");
 
 
 app.set("view engine", "ejs");
@@ -46,13 +47,13 @@ app.use(function(req, res, next){
 
 // used routes
 app.use(blogpostRoutes);
-// app.use(commentRoutes);
+app.use(commentRoutes);
 app.use(loginRoutes);
 
 
 
 // app request listener
-app.listen(3000, function(req, res){
+app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("Sever is started...!!!");
 });
 

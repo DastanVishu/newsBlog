@@ -9,15 +9,36 @@
                     <p class="card-text"><%= selected.description %></p>
                     <h6 class="card-subtitle mb-2 text-muted">Submit by <%= selected.author.username %></h6>
                     <small class="text-muted"><%= selected.date %></small>
-
+                    <% if(currentUser.admin === "true"){ %>
                     <form action="/<%= selected.id %>?_method=DELETE" method="POST">
                         <button class="btn btn-danger btn-sm" style="float: right; margin-left: 4px;">Delete</button>
                     </form>
                     
                     <a href="/blog/<%= selected.id %>/edit" class="btn btn-warning btn-sm" style="float: right;">Edit</a>  
-                    <br><a href="/blog">Go Back</a> 
+                    <% } %>
+                    <br><a href="/blog"> <-Go Back</a> 
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <form action="/comment/<%= selected.id %>" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" name= "text" style="width: 70%;"></textarea>
+                            <button class="btn btn-primary" style="margin-top: 5px;">Add Comment</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <% comt.comments.forEach(function(all){ %> 
+                    <hr>
+                    <h4 class="card-title"> <%= all.author.username %></h4>
+                    <p class="card-text"><span class="text-muted">comment: </span><%= all.text %></p>
+                    <% }) %>
+                </div>
+            </div>
+
+
         </div>
 </div>
     

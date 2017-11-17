@@ -11,7 +11,7 @@ middlewareObj.checkOwnership = function(req, res, next){
                 res.redirect("back");
             }else{
                 // does user own the BlogPost?
-                if(foundBlog.author.id.equals(req.user._id) || req.user.admin === "true"){
+                if(req.user.admin === "true"){
                     next();
                 } else{
                     res.redirect("back");
