@@ -5,7 +5,8 @@ var express                 = require("express"),
     passport                = require("passport"),
     LocalStrategy           = require("passport-local"),
     methodOverride          = require("method-override"),
-    passportLocalMongoose   = require("passport-local-mongoose");
+    passportLocalMongoose   = require("passport-local-mongoose"),
+    dateFormat              = require("dateformat");
 
 
 // Defined Shema

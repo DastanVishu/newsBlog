@@ -1,0 +1,34 @@
+var BlogpostModel   = require("../models/post");
+
+// all the middleware goes here
+var middlewareObj = {};
+
+middlewareObj.checkOwnership = function(req, res, next){
+    // is user logged in or Admin?
+    if(req.isAuthenticated()){
+        BlogpostModel.findById(req.params.id, function(err, foundBlog){
+            if(err){
+                res.redirect("back");
+            }else{
+                // does user own the BlogPost?
+                if(foundBlog.author.id.equals(req.user._id) || req.user.admin === true){
+                    next();
+                } else{
+                    res.redirect("back");
+                }
+            }
+        });
+    } else{
+        // otherwise, redirect
+        res.redirect("back");
+    }
+}
+
+middlewareObj.isLoggedIn = function (req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/login");
+}
+
+module.exports = middlewareObj;

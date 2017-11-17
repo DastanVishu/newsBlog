@@ -1,4 +1,29 @@
 <% include ../partials/header %>
-<h1>I am  blog Page</h1>
+<div class="container">
+    <div class="row">
+        <div style=" margin: 25px auto;">
+            <div class="jumbotron">
+                <h1 class="display-3">wellcome to Blog Page!!</h1>
+                <p class="lead">You can read or create new blog</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/blog/new" role="button">Create NewBlog!!</a>
+                </p>
+            </div>
+            <div class="list-group">
+                <% allblog.forEach(function(all){ %> 
+                <a href="/blog/<%= all._id%>" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><%= all.title %></h5>
+                        <small class="text-muted"><%= all.date %></small>
+                    </div>
+                    <p class="mb-1"><%= all.description.substring(0, 100) %>....</p>
+                    <small class="text-muted">Submit by <%= all.author.username %></small>
+                </a>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
 <% include ../partials/footer %>
  
