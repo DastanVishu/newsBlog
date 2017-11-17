@@ -9,7 +9,11 @@
                     <p class="card-text"><%= selected.description %></p>
                     <h6 class="card-subtitle mb-2 text-muted">Submit by <%= selected.author.username %></h6>
                     <small class="text-muted"><%= selected.date %></small>
-                    <a href="#" class="btn btn-danger btn-sm" style="float: right; margin-left: 4px;">Delete</a>
+
+                    <form action="/<%= selected.id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm" style="float: right; margin-left: 4px;">Delete</button>
+                    </form>
+                    
                     <a href="/blog/<%= selected.id %>/edit" class="btn btn-warning btn-sm" style="float: right;">Edit</a>  
                     <br><a href="/blog">Go Back</a> 
                 </div>

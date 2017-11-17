@@ -85,8 +85,50 @@ router.put("/blog/:id/edit", middleware.checkOwnership, function(req, res){
     });
 });
 
+// Destroy Blogpost route
+router.delete("/:id", middleware.checkOwnership, function(req, res){
+    // find the post and delete form the database
+    BlogpostModel.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("/blog");
+        } else {
+            res.redirect("/blog");
+        }
+    });
+});
 
+//  filtered list of posts (filter by title, author)
+router.post("/search", function(req, res){
+    // for list of title
+    var list = [];
+    // for authorlist
+    var authorlist = [];
+    // for list counting
+    var i = 0, j = 0;
+    // find all post blog
+    BlogpostModel.find({}, function(err, allblog){
+        if(err){
+            console.log(err);
+        } else{
+            // to find the particular data from given list
+            allblog.forEach(function(founded){
+                // find by title
+                if(founded.title === req.body.searchdata){
+                    list[i] = founded;
+                    i = i+1;
+                   // console.log(founded.title);
+                } 
+                // find by author name
+                if(founded.author.username === req.body.searchdata){
+                    authorlist[j] = founded;
+                    j = j+1;
+                }
 
+            });
+            res.render("blogs/searched", {titles: list, authorlist: authorlist});  
+        }
+    });
+});
 
 
 module.exports = router;
