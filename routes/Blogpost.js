@@ -61,8 +61,28 @@ router.get("/blog/:id", function(req, res){
 });
 
 // edit the bolg
-router.get("/blog/:id/edit", function(req, res){
-    res.send("edit page");
+router.get("/blog/:id/edit", middleware.checkOwnership, function(req, res){
+    BlogpostModel.findById(req.params.id, function(err, founded){
+        if(err){
+            console.log(err);
+            res.redirect("/blog");
+        }else{
+            res.render("blogs/edit", {data: founded});
+        }
+    });
+});
+
+// Update blog post
+router.put("/blog/:id/edit", middleware.checkOwnership, function(req, res){
+    //find and update the correct blog
+    BlogpostModel.findByIdAndUpdate(req.params.id, req.body.blogpost, function(err, updatedblog){
+        if(err){
+            res.redirect("/blog");
+        } else{
+            // redirect somewhere (show page)
+            res.redirect("/blog/" + req.params.id);
+        }
+    });
 });
 
 

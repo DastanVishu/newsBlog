@@ -11,7 +11,7 @@ middlewareObj.checkOwnership = function(req, res, next){
                 res.redirect("back");
             }else{
                 // does user own the BlogPost?
-                if(foundBlog.author.id.equals(req.user._id) || req.user.admin === true){
+                if(foundBlog.author.id.equals(req.user._id) || req.user.admin === "true"){
                     next();
                 } else{
                     res.redirect("back");
@@ -24,10 +24,13 @@ middlewareObj.checkOwnership = function(req, res, next){
     }
 }
 
+// check user are loggedIn or not
 middlewareObj.isLoggedIn = function (req, res, next){
+    // if user loggedIn then go to next page
 	if(req.isAuthenticated()){
 		return next();
-	}
+    }
+    // if not then redirect to login page
 	res.redirect("/login");
 }
 

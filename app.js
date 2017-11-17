@@ -26,6 +26,7 @@ mongoose.connect("mongodb://localhost/Bloggers");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 app.use(require("express-session")({
     secret: "my name is Dastan",
     resave: false,
